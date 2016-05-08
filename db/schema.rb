@@ -11,38 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150409175915) do
+ActiveRecord::Schema.define(version: 20160508100313) do
 
-  create_table "subscriptions", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "task_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "myurls", force: :cascade do |t|
+    t.string   "key",        limit: 255
+    t.string   "url",        limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
-  add_index "subscriptions", ["task_id"], name: "index_subscriptions_on_task_id"
-  add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id"
-
-  create_table "tasks", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "name"
-    t.string   "description"
-    t.string   "state"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "tasks", ["user_id"], name: "index_tasks_on_user_id"
+  add_index "myurls", ["key"], name: "index_myurls_on_key", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "username"
-    t.string   "email"
-    t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string   "key",        limit: 255
+    t.string   "url",        limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["username"], name: "index_users_on_username", unique: true
+  add_index "users", ["key"], name: "index_users_on_key", using: :btree
 
 end

@@ -10,8 +10,15 @@ default: &default
   timeout: 5000
 
 development:
-  <<: *default
-  database: db/development.sqlite3
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  username: in_short_url
+  password: rkm$678
+  socket: /var/run/mysqld/mysqld.sock
+  database: in_short_url_development
+  #<<: *default
+  #database: db/development.sqlite3
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
